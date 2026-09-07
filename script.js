@@ -506,40 +506,25 @@ function applyFilters() {
 
 function addToCart(id) {
 
-    const product =
-        products.find(
-            item => item.id === id
-        );
+    const product = products.find(product => product.id === id);
 
+    if (!product) return;
 
-    const existing =
-        cart.find(
-            item => item.id === id
-        );
+    const existingItem = cart.find(item => item.id === id);
 
-
-    if (existing) {
-
-        existing.quantity++;
-
+    if (existingItem) {
+        existingItem.quantity += 1;
     } else {
-
         cart.push({
             ...product,
             quantity: 1
         });
-
     }
 
-
     saveState();
-
     updateCart();
 
-    showToast(
-        `${product.name} added to your bag`
-    );
-
+    showToast(`${product.name} added to your bag`);
 }
 
 
@@ -612,39 +597,32 @@ function updateCart() {
                     </p>
 
 
-                    <div class="quantity">
+                   <div class="quantity">
 
-                        <button
-                            onclick="changeQuantity(
-                                ${item.id},
-                                -1
-                            )"
-                        >
-                            −
-                        </button>
+    <button
+        onclick="changeQuantity(${item.id}, -1)"
+    >
+        −
+    </button>
 
-                        <span>
-                            ${item.quantity}
-                        </span>
+    <span>
+        ${item.quantity}
+    </span>
 
-                        <button
-                            onclick="changeQuantity(
-                                ${item.id},
-                                1
-                            )"
-                        >
-                            +
-                        </button>
+    <button
+        onclick="changeQuantity(${item.id}, 1)"
+    >
+        +
+    </button>
 
+    <button
+        class="remove"
+        onclick="deleteCartItem(${item.id})"
+    >
+        DELETE
+    </button>
 
-                        <button
-                            class="remove"
-                            onclick="removeItem(${item.id})"
-                        >
-                            REMOVE
-                        </button>
-
-                    </div>
+</div>
 
                 </div>
 
@@ -713,37 +691,34 @@ function updateCart() {
 /* =====================================================
    CHANGE QUANTITY
 ===================================================== */
-
 function changeQuantity(id, amount) {
 
-    const item =
-        cart.find(
-            item => item.id === id
-        );
-
+    const item = cart.find(item => item.id === id);
 
     if (!item) return;
 
-
     item.quantity += amount;
 
-
+    // Delete item when quantity becomes 0
     if (item.quantity <= 0) {
 
-        cart =
-            cart.filter(
-                item => item.id !== id
-            );
+        cart = cart.filter(item => item.id !== id);
 
+        showToast("Product removed from bag");
     }
 
+    saveState();
+    updateCart();
+}
+function deleteCartItem(id) {
+
+    cart = cart.filter(item => item.id !== id);
 
     saveState();
-
     updateCart();
 
+    showToast("Product deleted from bag");
 }
-
 
 /* =====================================================
    REMOVE
