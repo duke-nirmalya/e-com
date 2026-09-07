@@ -17,6 +17,7 @@
 }
 
 
+
 * {
     margin: 0;
     padding: 0;
@@ -847,130 +848,209 @@ body.dark .main-navbar {
 
     line-height: 1.8;
 
+    
 }
+
+/* =====================================================
+   SEARCH PANEL (minimal support styling)
+===================================================== */
+.search-panel {
+  position: fixed;
+  inset: 0;
+  background: var(--cream);
+  z-index: 2000;
+  display: none;
+}
+.search-panel.active { display: block; }
+.search-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 96px 24px;
+}
+.search-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  letter-spacing: 0.08em;
+  margin-bottom: 32px;
+}
+.search-heading button {
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+}
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 12px;
+}
+.search-input-wrapper input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  width: 100%;
+}
+.search-results { margin-top: 32px; color: var(--ink-soft); }
 
 
 /* =====================================================
-   COLLECTIONS
+   COLLECTION SECTION
 ===================================================== */
-
-.collection-grid {
-
-    display: grid;
-
-    grid-template-columns: 1.4fr 1fr 1fr;
-
-    gap: 12px;
-
-    height: 580px;
-
+collection-section .section-top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  text-align: left;
+}
+.section-label {
+  display: block;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+.collection-section h2 {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 500;
+  margin: 0;
+}
+.collection-section h2 em { font-style: italic; 
+    color: #97081d; 
+}
+.collection-section .section-top p {
+  max-width: 320px;
+  color: var(--ink-soft);
+  margin: 0;
 }
 
+/* ---- Swiper shell ---- */
+.collection-section .swiper {
+  padding: 4px 4px 8px;
+  overflow: hidden;
+}
 
+/* ---- Card: image + caption share one positioning context,
+   caption pinned to the bottom of the image ---- */
 .collection-card {
-
-    position: relative;
-
-    overflow: hidden;
-
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  isolation: isolate;
 }
 
+/* Desktop: keep the card smaller instead of stretching full width */
+@media (min-width: 992px) {
+  .collection-card {
+    max-width: 340px;
+    max-height: 440px;
+    margin: 0 auto;
+  }
+}
 
 .collection-card img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    transition: transform 1s ease;
-
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
 }
 
+.collection-card:hover img { transform: scale(1.04); }
 
-.collection-card:hover img {
-
-    transform: scale(1.06);
-
-}
-
-
+/* Gradient scrim so light text stays legible over any photo */
 .collection-overlay {
-
-    position: absolute;
-
-    inset: 0;
-
-    background:
-        linear-gradient(
-            transparent 35%,
-            rgba(0,0,0,.75)
-        );
-
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 8, 6, 0.85) 0%,
+    rgba(10, 8, 6, 0.35) 38%,
+    rgba(10, 8, 6, 0) 65%
+  );
+  z-index: 1;
 }
-
 
 .collection-content {
-
-    position: absolute;
-
-    bottom: 25px;
-
-    left: 25px;
-
-    right: 25px;
-
-    color: white;
-
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 28px;
+  color: var(--white);
 }
 
-
-.collection-content span {
-
-    font-size: 8px;
-
-    letter-spacing: 1.5px;
-
+.collection-eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 10px;
 }
 
+.collection-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 0 18px;
+  color: var(--white);
+}
+.collection-title em { font-style: italic; }
 
-.collection-content h3 {
-
-    font-size: 34px;
-
-    line-height: .95;
-
-    margin: 10px 0 20px;
-
+.collection-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding-bottom: 4px;
+}
+.collection-link:hover {
+  color: var(--white);
+  border-color: var(--white);
 }
 
+/* Large hero card gets a bit more room for its title */
+.collection-card.large .collection-title { font-size: 2.5rem; }
 
-.collection-content h3 em {
-
-    font-family: "Playfair Display", serif;
-
+/* ---- Swiper nav arrows ---- */
+.collection-section .swiper-button-prev,
+.collection-section .swiper-button-next {
+  color: var(--white);
+  width: 44px;
+  height: 44px;
+  top: 45%;
+  background: var(--ink);
+  border-radius: 50%;
 }
-
-
-.collection-content a {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    border-top: 1px solid rgba(255,255,255,.5);
-
-    padding-top: 12px;
-
-    font-size: 9px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
+.collection-section .swiper-button-prev::after,
+.collection-section .swiper-button-next::after {
+  font-size: 1rem;
 }
+.collection-section .swiper-button-prev { left: -4px; }
+.collection-section .swiper-button-next { right: -4px; }
 
+/* ---- Responsive ---- */
+@media (max-width: 767px) {
+  .collection-card { aspect-ratio: 4 / 5; }
+  .collection-title { font-size: 1.5rem; }
+  .collection-card.large .collection-title { font-size: 1.75rem; }
+  .collection-section h2 { font-size: 2rem; }
+}
 
 /* =====================================================
    SHOP
@@ -1062,6 +1142,8 @@ body.dark .main-navbar {
     outline: 0;
 
 }
+
+
 
 
 /* =====================================================

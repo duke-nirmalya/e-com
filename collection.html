@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+          <!-- Bootstrap Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Link Swiper's CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg main-navbar">
+
+    <div class="container-fluid px-lg-5">
+
+        <a href="#" class="brand">
+            E-COM<span>.</span>
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+        >
+            <i class="bi bi-list"></i>
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarContent"
+        >
+
+            <ul class="navbar-nav mx-auto">
+
+                <li>
+                    <a class="nav-link active" href="#home">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#shop">
+                        Shop
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#collections">
+                        Collections
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#story">
+                        Our Story
+                    </a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="#contact">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="nav-actions">
+
+                <button
+                    class="nav-btn"
+                    id="searchButton"
+                >
+                    <i class="bi bi-search"></i>
+                </button>
+
+
+                <button
+                    class="nav-btn"
+                    id="themeButton"
+                >
+                    <i class="bi bi-moon"></i>
+                </button>
+
+
+                <button
+                    class="nav-btn wishlist-nav"
+                    id="wishlistButton"
+                >
+                    <i class="bi bi-heart"></i>
+                    <span id="wishlistCount">0</span>
+                </button>
+
+
+                <button
+                    class="nav-btn"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#cartCanvas"
+                >
+                    <i class="bi bi-bag"></i>
+                    <span id="cartCount">0</span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     SEARCH PANEL
+===================================================== -->
+
+<div class="search-panel" id="searchPanel">
+
+    <div class="search-inner">
+
+
+        <div class="search-heading">
+
+            <span>SEARCH NOVAÉ</span>
+
+            <button id="closeSearch">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+        </div>
+
+
+        <div class="search-input-wrapper">
+
+            <i class="bi bi-search"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search dresses, shirts, accessories..."
+            >
+
+        </div>
+
+
+        <div class="search-results" id="searchResults">
+
+            <span>
+                Start typing to search products
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+ <section id="collections" class="section collection-section">
+
+    <div class="container-fluid px-lg-5">
+
+        <div class="section-top">
+
+            <div>
+
+                <span class="section-label">
+                    THE EDIT
+                </span>
+
+                <h2>
+                    Curated for
+                    <em>you.</em>
+                </h2>
+
+            </div>
+
+            <p>
+                Discover pieces designed to move with you,
+                wherever the day takes you.
+            </p>
+
+        </div>
+
+        <div class="swiper">
+            <div class="swiper-wrapper">
+
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <div class="collection-card large">
+
+                        <img
+                            src="https://i.pinimg.com/736x/80/3f/b5/803fb5589d74bc0bcf4f868ce28fc40f.jpg"
+                            alt="Women Collection"
+                        >
+
+                        <div class="collection-overlay"></div>
+
+                        <div class="collection-content">
+                            <span class="collection-eyebrow">01 — WOMEN</span>
+
+                            <h3 class="collection-title">
+                                <em>Handcrafted</em> 
+                                <h4>Shirts</h4>
+                            </h3>
+
+                            <a href="#shop" class="collection-link">
+                                DISCOVER
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide">
+                    <div class="collection-card">
+
+                        <img
+                            src="https://i.pinimg.com/736x/be/43/91/be439180eca0ff95fa459b22ec1ade62.jpg"
+                            alt="90's Collection"
+                        >
+
+                        <div class="collection-overlay"></div>
+
+                        <div class="collection-content">
+                            <span class="collection-eyebrow">02 — MEN</span>
+
+                            <h3 class="collection-title">
+                                <em>90's</em>
+                                <h4>Collections</h4>
+                            </h3>
+
+                            <a href="#shop" class="collection-link">
+                                DISCOVER
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide">
+                    <div class="collection-card">
+
+                        <img
+                            src="https://i.pinimg.com/736x/81/3b/2c/813b2c4e359b5f7e655941f1e4da8160.jpg">
+                            alt="Accessories"
+                        >
+
+                        <div class="collection-overlay"></div>
+
+                        <div class="collection-content">
+                            <span class="collection-eyebrow">03 — ACCESSORIES</span>
+
+                            <h3 class="collection-title">
+                                <em>Accessories</em> <h4>Detalis</h4>
+                            </h3>
+
+                            <a href="#shop" class="collection-link">
+                                DISCOVER
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                  <div class="swiper-slide">
+                    <div class="collection-card">
+
+                        <img
+                            src="https://i.pinimg.com/736x/49/88/67/49886742924f329212da9076dabd1738.jpg">
+                            alt="Accessories"
+                        >
+
+                        <div class="collection-overlay"></div>
+
+                        <div class="collection-content">
+                            <span class="collection-eyebrow">03 — ACCESSORIES</span>
+
+                            <h3 class="collection-title">
+                                <em>Accessories</em> <h4>Detalis</h4>
+                            </h3>
+
+                            <a href="#shop" class="collection-link">
+                                DISCOVER
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                 
+
+                
+
+            </div>
+
+            <!-- Optional buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+<script src="script.js"></script>
+
+
+ <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js">
+</script>
+
+ <!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper('.swiper', {
+    slidesPerView: 2,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      0: { slidesPerView: 1 },
+      768: { slidesPerView: 2 }
+    }
+  });
+</script>
+
+</body>
+</html>
