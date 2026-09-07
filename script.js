@@ -535,17 +535,11 @@ function updateCart() {
 
     cartItems.innerHTML = "";
 
-
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-
             <div class="text-center py-5">
-
-                <i
-                    class="bi bi-bag"
-                    style="font-size:40px"
-                ></i>
+                <i class="bi bi-bag" style="font-size:40px"></i>
 
                 <h5 class="mt-3">
                     Your bag is empty
@@ -554,30 +548,29 @@ function updateCart() {
                 <p class="text-muted">
                     Add something beautiful.
                 </p>
-
             </div>
-
         `;
-        cartCount.textContent = 0; subtotalElement.textContent = money(0); shippingElement.textContent = "FREE"; discountElement.textContent = "- " + money(0); cartTotalElement.textContent = money(0); wishlistCount.textContent = wishlist.length; return;
 
+        cartCount.textContent = 0;
+        subtotalElement.textContent = money(0);
+        shippingElement.textContent = "FREE";
+        discountElement.textContent = "- " + money(0);
+        cartTotalElement.textContent = money(0);
+        wishlistCount.textContent = wishlist.length;
+
+        return;
     }
 
-
     let totalItems = 0;
-
     let subtotal = 0;
-
 
     cart.forEach(item => {
 
         totalItems += item.quantity;
 
-        subtotal +=
-            item.price * item.quantity;
-
+        subtotal += item.price * item.quantity;
 
         cartItems.innerHTML += `
-
             <div class="cart-item">
 
                 <img
@@ -585,76 +578,68 @@ function updateCart() {
                     alt="${item.name}"
                 >
 
-
                 <div class="cart-item-info">
 
-                    <h5>
-                        ${item.name}
-                    </h5>
+                    <h5>${item.name}</h5>
 
-                    <p>
-                        ${money(item.price)}
-                    </p>
+                    <p>${money(item.price)}</p>
 
+                    <div class="quantity">
 
-                   <div class="quantity">
+                        <button
+                            onclick="changeQuantity(${item.id}, -1)"
+                        >
+                            −
+                        </button>
 
-    <button
-        onclick="changeQuantity(${item.id}, -1)"
-    >
-        −
-    </button>
+                        <span>
+                            ${item.quantity}
+                        </span>
 
-    <span>
-        ${item.quantity}
-    </span>
+                        <button
+                            onclick="changeQuantity(${item.id}, 1)"
+                        >
+                            +
+                        </button>
 
-    <button
-        onclick="changeQuantity(${item.id}, 1)"
-    >
-        +
-    </button>
+                        <button
+                            class="remove"
+                            onclick="deleteCartItem(${item.id})"
+                        >
+                            DELETE
+                        </button>
 
-    <button
-        class="remove"
-        onclick="deleteCartItem(${item.id})"
-    >
-        DELETE
-    </button>
-
-</div>
+                    </div>
 
                 </div>
 
             </div>
-
         `;
-
     });
 
+    // Update bag count
+    cartCount.textContent = totalItems;
 
     let shipping = 0;
     let discount = 0;
 
-
-    // Free shipping + ₹1000 discount
+    // ₹1000 discount + free shipping
     if (subtotal > 50000) {
+        discount += 1000;
         shipping = 0;
-        discount = 1000;
     }
+    // Shipping ₹99 below ₹1999
     else if (subtotal > 0 && subtotal < 1999) {
         shipping = 99;
     }
-
 
     // NOVA10 coupon
     if (couponApplied) {
         discount += Math.round(subtotal * 0.10);
     }
-    const total =
-        subtotal +
-        shipping -
-        discount;
+
+    const total = subtotal + shipping - discount;
+
     subtotalElement.textContent = money(subtotal);
 
     shippingElement.textContent =
@@ -667,9 +652,9 @@ function updateCart() {
 
     cartTotalElement.textContent =
         money(Math.max(total, 0));
-        wishlistCount.textContent = wishlist.length;
-}
 
+    wishlistCount.textContent = wishlist.length;
+}
     /* =====================================================
        CHANGE QUANTITY
     ===================================================== */
