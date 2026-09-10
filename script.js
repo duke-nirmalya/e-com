@@ -207,6 +207,7 @@ const cartItems =
 
 const cartCount =
     document.getElementById("cartCount");
+const wishlistButton = document.getElementById("wishlistButton");
 
 const wishlistCount =
     document.getElementById("wishlistCount");
@@ -259,7 +260,66 @@ function saveState() {
     );
 
 }
+// Update wishlist count 
+function updateWishlistCount() { wishlistCount.textContent = wishlist.length; }
+// Show wishlist when button is clicked 
+wishlistButton.addEventListener("click", function () {
+    // Get latest wishlist
+    wishlist = JSON.parse(localStorage.getItem("novaeWishlist")) || []; if (wishlist.length === 0) { alert("Your wishlist is empty ❤️"); return; }
+        // Convert IDs into actual products
+        const wishlistProducts =
+            wishlist
+                .map(id =>
+                    products.find(
+                        product => product.id === id
+                    )
+                )
+                .filter(product => product);
+    // Create wishlist display 
+    let wishlistHTML = ` <div class="wishlist-popup"> <h2>❤️ My Wishlist</h2> <div class="wishlist-products"> `; 
+    wishlistProducts.forEach(product => { wishlistHTML += ` <div class="wishlist-item"> <img src="${product.image}" alt="${product.name}" width="100"> <div> <h4>${product.name}</h4> <p>₹${product.price}</p> </div> <button onclick="removeFromWishlist(${product.id})"> Remove </button> </div> `; });
+    wishlistHTML += ` </div> <button onclick="closeWishlist()"> Close </button> </div> `;
+        // Remove old popup first
+        const oldPopup =
+            document.getElementById(
+                "wishlistPopup"
+            );
 
+        if (oldPopup) {
+
+            oldPopup.remove();
+
+        }
+    // Add popup to page 
+    const popup = document.createElement("div"); popup.id = "wishlistPopup"; popup.innerHTML = wishlistHTML; document.body.appendChild(popup);
+});
+// Remove product from wishlist
+ function removeFromWishlist(id) { wishlist = wishlist.filter(product => product.id !== id); 
+    // Save updated wishlist
+     localStorage.setItem( "novaeWishlist", JSON.stringify(wishlist) ); updateWishlistCount(); 
+     // Remove current popup
+    const popup =
+        document.getElementById(
+            "wishlistPopup"
+        );
+
+    if (popup) {
+
+        popup.remove();
+
+    }
+     // Open updated wishlist
+     if(wishlist.length > 0){
+ wishlistButton.click();
+     }else{
+        alert("Your wishlist is empty 💖");
+     }
+     applyFilters();
+      } 
+      // Close wishlist 
+      function closeWishlist() { const popup = document.getElementById("wishlistPopup"); if (popup) { popup.remove(); } }
+ // Initial count
+  updateWishlistCount();
 
 /* =====================================================
    DISPLAY PRODUCTS
@@ -655,116 +715,116 @@ function updateCart() {
 
     wishlistCount.textContent = wishlist.length;
 }
-    /* =====================================================
-       CHANGE QUANTITY
-    ===================================================== */
-    function changeQuantity(id, amount) {
+/* =====================================================
+   CHANGE QUANTITY
+===================================================== */
+function changeQuantity(id, amount) {
 
-        const item = cart.find(item => item.id === id);
+    const item = cart.find(item => item.id === id);
 
-        if (!item) return;
+    if (!item) return;
 
-        item.quantity += amount;
+    item.quantity += amount;
 
-        // Delete item when quantity becomes 0
-        if (item.quantity <= 0) {
-
-            cart = cart.filter(item => item.id !== id);
-
-            showToast("Product removed from bag");
-        }
-
-        saveState();
-        updateCart();
-    }
-    function deleteCartItem(id) {
+    // Delete item when quantity becomes 0
+    if (item.quantity <= 0) {
 
         cart = cart.filter(item => item.id !== id);
 
-        saveState();
-        updateCart();
-
-        showToast("Product deleted from bag");
+        showToast("Product removed from bag");
     }
 
-    /* =====================================================
-       REMOVE
-    ===================================================== */
+    saveState();
+    updateCart();
+}
+function deleteCartItem(id) {
 
-    function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
 
-        cart =
-            cart.filter(
-                item => item.id !== id
-            );
+    saveState();
+    updateCart();
+
+    showToast("Product deleted from bag");
+}
+
+/* =====================================================
+   REMOVE
+===================================================== */
+
+function removeItem(id) {
+
+    cart =
+        cart.filter(
+            item => item.id !== id
+        );
 
 
-        saveState();
+    saveState();
 
-        updateCart();
+    updateCart();
 
-        showToast("Product removed");
+    showToast("Product removed");
+
+}
+
+
+/* =====================================================
+   WISHLIST
+===================================================== */
+
+function toggleWishlist(id) {
+
+    const index =
+        wishlist.indexOf(id);
+
+
+    if (index === -1) {
+
+        wishlist.push(id);
+
+        showToast(
+            "Added to wishlist ❤️"
+        );
+
+    } else {
+
+        wishlist.splice(index, 1);
+
+        showToast(
+            "Removed from wishlist"
+        );
 
     }
 
 
-    /* =====================================================
-       WISHLIST
-    ===================================================== */
+    saveState();
 
-    function toggleWishlist(id) {
+    updateCart();
 
-        const index =
-            wishlist.indexOf(id);
+    applyFilters();
 
-
-        if (index === -1) {
-
-            wishlist.push(id);
-
-            showToast(
-                "Added to wishlist ❤️"
-            );
-
-        } else {
-
-            wishlist.splice(index, 1);
-
-            showToast(
-                "Removed from wishlist"
-            );
-
-        }
+}
 
 
-        saveState();
+/* =====================================================
+   QUICK VIEW
+===================================================== */
 
-        updateCart();
+function quickView(id) {
 
-        applyFilters();
-
-    }
-
-
-    /* =====================================================
-       QUICK VIEW
-    ===================================================== */
-
-    function quickView(id) {
-
-        const product =
-            products.find(
-                item => item.id === id
-            );
+    const product =
+        products.find(
+            item => item.id === id
+        );
 
 
-        const modal =
-            document.getElementById(
-                "modalProduct"
-            );
+    const modal =
+        document.getElementById(
+            "modalProduct"
+        );
 
 
-        modal.innerHTML = `
+    modal.innerHTML = `
 
         <div class="col-lg-6">
 
@@ -794,8 +854,8 @@ function updateCart() {
                 <div class="modal-rating">
 
                     ${"★".repeat(
-            Math.round(product.rating)
-        )}
+        Math.round(product.rating)
+    )}
 
                     <span>
                         ${product.rating}
@@ -830,121 +890,121 @@ function updateCart() {
     `;
 
 
-        const modalInstance =
-            new bootstrap.Modal(
-                document.getElementById(
-                    "productModal"
-                )
+    const modalInstance =
+        new bootstrap.Modal(
+            document.getElementById(
+                "productModal"
+            )
+        );
+
+
+    modalInstance.show();
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+const searchPanel =
+    document.getElementById(
+        "searchPanel"
+    );
+
+
+document
+    .getElementById("searchButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            searchPanel.classList.add(
+                "open"
             );
 
+            document
+                .getElementById(
+                    "searchInput"
+                )
+                .focus();
 
-        modalInstance.show();
-
-    }
-
-
-    /* =====================================================
-       SEARCH
-    ===================================================== */
-
-    const searchPanel =
-        document.getElementById(
-            "searchPanel"
-        );
+        }
+    );
 
 
-    document
-        .getElementById("searchButton")
-        .addEventListener(
-            "click",
-            () => {
+document
+    .getElementById("closeSearch")
+    .addEventListener(
+        "click",
+        () => {
 
-                searchPanel.classList.add(
-                    "open"
-                );
+            searchPanel.classList.remove(
+                "open"
+            );
 
-                document
-                    .getElementById(
-                        "searchInput"
-                    )
-                    .focus();
-
-            }
-        );
+        }
+    );
 
 
-    document
-        .getElementById("closeSearch")
-        .addEventListener(
-            "click",
-            () => {
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        function () {
 
-                searchPanel.classList.remove(
-                    "open"
-                );
-
-            }
-        );
+            const query =
+                this.value
+                    .toLowerCase()
+                    .trim();
 
 
-    document
-        .getElementById("searchInput")
-        .addEventListener(
-            "input",
-            function () {
+            const results =
+                products.filter(product =>
 
-                const query =
-                    this.value
+                    product.name
                         .toLowerCase()
-                        .trim();
+                        .includes(query)
+
+                    ||
+
+                    product.categoryName
+                        .toLowerCase()
+                        .includes(query)
+
+                );
 
 
-                const results =
-                    products.filter(product =>
-
-                        product.name
-                            .toLowerCase()
-                            .includes(query)
-
-                        ||
-
-                        product.categoryName
-                            .toLowerCase()
-                            .includes(query)
-
-                    );
+            const searchResults =
+                document.getElementById(
+                    "searchResults"
+                );
 
 
-                const searchResults =
-                    document.getElementById(
-                        "searchResults"
-                    );
-
-
-                if (!query) {
-
-                    searchResults.innerHTML =
-                        "Start typing to search products";
-
-                    return;
-
-                }
-
-
-                if (results.length === 0) {
-
-                    searchResults.innerHTML =
-                        "No products found.";
-
-                    return;
-
-                }
-
+            if (!query) {
 
                 searchResults.innerHTML =
-                    results
-                        .slice(0, 5)
-                        .map(product => `
+                    "Start typing to search products";
+
+                return;
+
+            }
+
+
+            if (results.length === 0) {
+
+                searchResults.innerHTML =
+                    "No products found.";
+
+                return;
+
+            }
+
+
+            searchResults.innerHTML =
+                results
+                    .slice(0, 5)
+                    .map(product => `
 
                         <div
                             style="
@@ -964,272 +1024,272 @@ function updateCart() {
                         </div>
 
                     `)
-                        .join("");
-
-            }
-        );
-
-
-    function searchProduct(id) {
-
-        searchPanel.classList.remove(
-            "open"
-        );
-
-        quickView(id);
-
-    }
-
-
-    /* =====================================================
-       COUPON
-    ===================================================== */
-
-    document
-        .getElementById("couponButton")
-        .addEventListener(
-            "click",
-            () => {
-
-                const input =
-                    document.getElementById(
-                        "couponInput"
-                    );
-
-
-                const message =
-                    document.getElementById(
-                        "couponMessage"
-                    );
-
-
-                const code =
-                    input.value
-                        .trim()
-                        .toUpperCase();
-
-
-                if (code === "NOVA10") {
-
-                    couponApplied = true;
-
-                    message.textContent =
-                        "✓ 10% discount applied";
-
-                    showToast(
-                        "Coupon applied!"
-                    );
-
-                    updateCart();
-
-                } else {
-
-                    couponApplied = false;
-
-                    message.textContent =
-                        "Invalid coupon. Try NOVA10";
-
-                    updateCart();
-
-                }
-
-            }
-        );
-
-
-    /* =====================================================
-       CHECKOUT
-    ===================================================== */
-
-    document
-        .getElementById("checkoutButton")
-        .addEventListener(
-            "click",
-            () => {
-
-                if (cart.length === 0) {
-
-                    showToast(
-                        "Your bag is empty!"
-                    );
-
-                    return;
-
-                }
-
-
-                showToast(
-                    "Checkout demo — payment gateway can be connected here."
-                );
-
-            }
-        );
-
-
-    /* =====================================================
-       NEWSLETTER
-    ===================================================== */
-
-    document
-        .getElementById("newsletterForm")
-        .addEventListener(
-            "submit",
-            function (e) {
-
-                e.preventDefault();
-
-
-                showToast(
-                    "Welcome to the NOVAÉ world!"
-                );
-
-
-                this.reset();
-
-            }
-        );
-
-
-    /* =====================================================
-       DARK MODE
-    ===================================================== */
-
-    document
-        .getElementById("themeButton")
-        .addEventListener(
-            "click",
-            () => {
-
-                document.body.classList.toggle(
-                    "dark"
-                );
-
-
-                const icon =
-                    document.querySelector(
-                        "#themeButton i"
-                    );
-
-
-                if (
-                    document.body.classList.contains(
-                        "dark"
-                    )
-                ) {
-
-                    icon.className =
-                        "bi bi-sun";
-
-                } else {
-
-                    icon.className =
-                        "bi bi-moon";
-
-                }
-
-            }
-        );
-
-
-    /* =====================================================
-       TOAST
-    ===================================================== */
-
-    function showToast(message) {
-
-        document.getElementById(
-            "toastText"
-        ).textContent = message;
-
-
-        const toast =
-            new bootstrap.Toast(
-                document.getElementById(
-                    "toast"
-                ),
-                {
-                    delay: 2500
-                }
-            );
-
-
-        toast.show();
-
-    }
-
-
-    /* =====================================================
-       BACK TO TOP
-    ===================================================== */
-
-    const backTop =
-        document.getElementById(
-            "backTop"
-        );
-
-
-    window.addEventListener(
-        "scroll",
-        () => {
-
-            if (window.scrollY > 500) {
-
-                backTop.classList.add(
-                    "show"
-                );
-
-            } else {
-
-                backTop.classList.remove(
-                    "show"
-                );
-
-            }
+                    .join("");
 
         }
     );
 
 
-    backTop.addEventListener(
+function searchProduct(id) {
+
+    searchPanel.classList.remove(
+        "open"
+    );
+
+    quickView(id);
+
+}
+
+
+/* =====================================================
+   COUPON
+===================================================== */
+
+document
+    .getElementById("couponButton")
+    .addEventListener(
         "click",
         () => {
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            const input =
+                document.getElementById(
+                    "couponInput"
+                );
+
+
+            const message =
+                document.getElementById(
+                    "couponMessage"
+                );
+
+
+            const code =
+                input.value
+                    .trim()
+                    .toUpperCase();
+
+
+            if (code === "NOVA10") {
+
+                couponApplied = true;
+
+                message.textContent =
+                    "✓ 10% discount applied";
+
+                showToast(
+                    "Coupon applied!"
+                );
+
+                updateCart();
+
+            } else {
+
+                couponApplied = false;
+
+                message.textContent =
+                    "Invalid coupon. Try NOVA10";
+
+                updateCart();
+
+            }
 
         }
     );
 
 
-    /* =====================================================
-       LOADER
-    ===================================================== */
+/* =====================================================
+   CHECKOUT
+===================================================== */
 
-    window.addEventListener(
-        "load",
+document
+    .getElementById("checkoutButton")
+    .addEventListener(
+        "click",
         () => {
 
-            setTimeout(
-                () => {
+            if (cart.length === 0) {
 
-                    document
-                        .getElementById("loader")
-                        .classList.add("hidden");
+                showToast(
+                    "Your bag is empty!"
+                );
 
-                },
-                1600
+                return;
+
+            }
+
+
+            showToast(
+                "Checkout demo — payment gateway can be connected here."
             );
 
         }
     );
 
 
-    /* =====================================================
-       INITIALIZE
-    ===================================================== */
+/* =====================================================
+   NEWSLETTER
+===================================================== */
 
-    displayProducts();
+document
+    .getElementById("newsletterForm")
+    .addEventListener(
+        "submit",
+        function (e) {
 
-    updateCart();
+            e.preventDefault();
+
+
+            showToast(
+                "Welcome to the NOVAÉ world!"
+            );
+
+
+            this.reset();
+
+        }
+    );
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+document
+    .getElementById("themeButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            document.body.classList.toggle(
+                "dark"
+            );
+
+
+            const icon =
+                document.querySelector(
+                    "#themeButton i"
+                );
+
+
+            if (
+                document.body.classList.contains(
+                    "dark"
+                )
+            ) {
+
+                icon.className =
+                    "bi bi-sun";
+
+            } else {
+
+                icon.className =
+                    "bi bi-moon";
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message) {
+
+    document.getElementById(
+        "toastText"
+    ).textContent = message;
+
+
+    const toast =
+        new bootstrap.Toast(
+            document.getElementById(
+                "toast"
+            ),
+            {
+                delay: 2500
+            }
+        );
+
+
+    toast.show();
+
+}
+
+
+/* =====================================================
+   BACK TO TOP
+===================================================== */
+
+const backTop =
+    document.getElementById(
+        "backTop"
+    );
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (window.scrollY > 500) {
+
+            backTop.classList.add(
+                "show"
+            );
+
+        } else {
+
+            backTop.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+backTop.addEventListener(
+    "click",
+    () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        setTimeout(
+            () => {
+
+                document
+                    .getElementById("loader")
+                    .classList.add("hidden");
+
+            },
+            1600
+        );
+
+    }
+);
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+displayProducts();
+
+updateCart();

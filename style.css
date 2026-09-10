@@ -340,6 +340,69 @@ body.dark .main-navbar {
     font-size: 8px;
 
 }
+#wishlistPopup {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 380px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+    z-index: 9999;
+}
+
+.wishlist-popup h2 {
+    margin-bottom: 20px;
+}
+
+.wishlist-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.wishlist-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.wishlist-item h4 {
+    margin: 0;
+}
+
+.wishlist-item p {
+    margin: 5px 0;
+}
+
+.wishlist-item button {
+    margin-left: auto;
+    padding: 6px 10px;
+    border: none;
+    background: #dc3545;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.wishlist-popup > button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #222;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
 
 
 /* =====================================================
