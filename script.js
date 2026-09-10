@@ -207,6 +207,7 @@ const cartItems =
 
 const cartCount =
     document.getElementById("cartCount");
+const wishlistButton = document.getElementById("wishlistButton");
 
 const wishlistCount =
     document.getElementById("wishlistCount");
@@ -259,7 +260,66 @@ function saveState() {
     );
 
 }
+// Update wishlist count 
+function updateWishlistCount() { wishlistCount.textContent = wishlist.length; }
+// Show wishlist when button is clicked 
+wishlistButton.addEventListener("click", function () {
+    // Get latest wishlist
+    wishlist = JSON.parse(localStorage.getItem("novaeWishlist")) || []; if (wishlist.length === 0) { alert("Your wishlist is empty ❤️"); return; }
+        // Convert IDs into actual products
+        const wishlistProducts =
+            wishlist
+                .map(id =>
+                    products.find(
+                        product => product.id === id
+                    )
+                )
+                .filter(product => product);
+    // Create wishlist display 
+    let wishlistHTML = ` <div class="wishlist-popup"> <h2>❤️ My Wishlist</h2> <div class="wishlist-products"> `; 
+    wishlistProducts.forEach(product => { wishlistHTML += ` <div class="wishlist-item"> <img src="${product.image}" alt="${product.name}" width="100"> <div> <h4>${product.name}</h4> <p>₹${product.price}</p> </div> <button onclick="removeFromWishlist(${product.id})"> Remove </button> </div> `; });
+    wishlistHTML += ` </div> <button onclick="closeWishlist()"> Close </button> </div> `;
+        // Remove old popup first
+        const oldPopup =
+            document.getElementById(
+                "wishlistPopup"
+            );
 
+        if (oldPopup) {
+
+            oldPopup.remove();
+
+        }
+    // Add popup to page 
+    const popup = document.createElement("div"); popup.id = "wishlistPopup"; popup.innerHTML = wishlistHTML; document.body.appendChild(popup);
+});
+// Remove product from wishlist
+ function removeFromWishlist(id) { wishlist = wishlist.filter(product => product.id !== id); 
+    // Save updated wishlist
+     localStorage.setItem( "novaeWishlist", JSON.stringify(wishlist) ); updateWishlistCount(); 
+     // Remove current popup
+    const popup =
+        document.getElementById(
+            "wishlistPopup"
+        );
+
+    if (popup) {
+
+        popup.remove();
+
+    }
+     // Open updated wishlist
+     if(wishlist.length > 0){
+ wishlistButton.click();
+     }else{
+        alert("Your wishlist is empty 💖");
+     }
+     applyFilters();
+      } 
+      // Close wishlist 
+      function closeWishlist() { const popup = document.getElementById("wishlistPopup"); if (popup) { popup.remove(); } }
+ // Initial count
+  updateWishlistCount();
 
 /* =====================================================
    DISPLAY PRODUCTS
@@ -325,11 +385,10 @@ function displayProducts(list = products) {
                             onclick="toggleWishlist(${product.id})"
                         >
 
-                            <i class="bi ${
-                                liked
-                                    ? "bi-heart-fill"
-                                    : "bi-heart"
-                            }"></i>
+                            <i class="bi ${liked
+                ? "bi-heart-fill"
+                : "bi-heart"
+            }"></i>
 
                         </button>
 
@@ -375,8 +434,8 @@ function displayProducts(list = products) {
                             <span class="rating">
 
                                 ${"★".repeat(
-                                    Math.round(product.rating)
-                                )}
+                Math.round(product.rating)
+            )}
 
                                 ${product.rating}
 
@@ -536,17 +595,11 @@ function updateCart() {
 
     cartItems.innerHTML = "";
 
-
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-
             <div class="text-center py-5">
-
-                <i
-                    class="bi bi-bag"
-                    style="font-size:40px"
-                ></i>
+                <i class="bi bi-bag" style="font-size:40px"></i>
 
                 <h5 class="mt-3">
                     Your bag is empty
@@ -555,29 +608,29 @@ function updateCart() {
                 <p class="text-muted">
                     Add something beautiful.
                 </p>
-
             </div>
-
         `;
 
+        cartCount.textContent = 0;
+        subtotalElement.textContent = money(0);
+        shippingElement.textContent = "FREE";
+        discountElement.textContent = "- " + money(0);
+        cartTotalElement.textContent = money(0);
+        wishlistCount.textContent = wishlist.length;
+
+        return;
     }
 
-
     let totalItems = 0;
-
     let subtotal = 0;
-
 
     cart.forEach(item => {
 
         totalItems += item.quantity;
 
-        subtotal +=
-            item.price * item.quantity;
-
+        subtotal += item.price * item.quantity;
 
         cartItems.innerHTML += `
-
             <div class="cart-item">
 
                 <img
@@ -585,109 +638,83 @@ function updateCart() {
                     alt="${item.name}"
                 >
 
-
                 <div class="cart-item-info">
 
-                    <h5>
-                        ${item.name}
-                    </h5>
+                    <h5>${item.name}</h5>
 
-                    <p>
-                        ${money(item.price)}
-                    </p>
+                    <p>${money(item.price)}</p>
 
+                    <div class="quantity">
 
-                   <div class="quantity">
+                        <button
+                            onclick="changeQuantity(${item.id}, -1)"
+                        >
+                            −
+                        </button>
 
-    <button
-        onclick="changeQuantity(${item.id}, -1)"
-    >
-        −
-    </button>
+                        <span>
+                            ${item.quantity}
+                        </span>
 
-    <span>
-        ${item.quantity}
-    </span>
+                        <button
+                            onclick="changeQuantity(${item.id}, 1)"
+                        >
+                            +
+                        </button>
 
-    <button
-        onclick="changeQuantity(${item.id}, 1)"
-    >
-        +
-    </button>
+                        <button
+                            class="remove"
+                            onclick="deleteCartItem(${item.id})"
+                        >
+                            DELETE
+                        </button>
 
-    <button
-        class="remove"
-        onclick="deleteCartItem(${item.id})"
-    >
-        DELETE
-    </button>
-
-</div>
+                    </div>
 
                 </div>
 
             </div>
-
         `;
-
     });
 
+    // Update bag count
+    cartCount.textContent = totalItems;
 
     let shipping = 0;
-
-
-    if (subtotal > 0 && subtotal < 1999) {
-
-        shipping = 99;
-
-    }
-
-
     let discount = 0;
 
-
-    if (couponApplied) {
-
-        discount =
-            Math.round(subtotal * .10);
-
+    // ₹1000 discount + free shipping
+    if (subtotal > 50000) {
+        discount += 1000;
+        shipping = 0;
+    }
+    // Shipping ₹99 below ₹1999
+    else if (subtotal > 0 && subtotal < 1999) {
+        shipping = 99;
     }
 
+    // NOVA10 coupon
+    if (couponApplied) {
+        discount += Math.round(subtotal * 0.10);
+    }
 
-    const total =
-        subtotal +
-        shipping -
-        discount;
+    const total = subtotal + shipping - discount;
 
-
-    cartCount.textContent =
-        totalItems;
-
-
-    subtotalElement.textContent =
-        money(subtotal);
-
+    subtotalElement.textContent = money(subtotal);
 
     shippingElement.textContent =
         shipping === 0
             ? "FREE"
             : money(shipping);
 
-
     discountElement.textContent =
         "- " + money(discount);
-
 
     cartTotalElement.textContent =
         money(Math.max(total, 0));
 
-
-    wishlistCount.textContent =
-        wishlist.length;
-
+    wishlistCount.textContent = wishlist.length;
 }
-
-
 /* =====================================================
    CHANGE QUANTITY
 ===================================================== */
@@ -827,8 +854,8 @@ function quickView(id) {
                 <div class="modal-rating">
 
                     ${"★".repeat(
-                        Math.round(product.rating)
-                    )}
+        Math.round(product.rating)
+    )}
 
                     <span>
                         ${product.rating}
