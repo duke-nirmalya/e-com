@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products — NOVAÉ Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+<!-- Owner: Student D (Admin portal) -->
+
+<div class="admin-shell">
+
+    <aside class="admin-sidebar">
+        <span class="brand">NOVAÉ Admin</span>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="orders.html">Orders</a>
+        <a href="#" id="logoutButton">Log out</a>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <h2>Products</h2>
+            <button class="admin-btn small" id="newProductButton">+ New product</button>
+        </div>
+
+        <!-- CREATE / EDIT FORM (hidden until "New product" or "Edit" is clicked) -->
+        <div class="admin-card" id="productFormCard" hidden style="margin-bottom:20px;">
+            <h4 id="formTitle">New product</h4>
+
+            <div class="admin-error" id="formError"></div>
+
+            <form id="productForm" class="admin-form-grid">
+                <input type="hidden" id="productId">
+
+                <div>
+                    <label>Name</label>
+                    <input type="text" id="fieldName" required>
+                </div>
+
+                <div>
+                    <label>Category</label>
+                    <select id="fieldCategory" required>
+                        <option value="women">Women</option>
+                        <option value="men">Men</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label>Price (₹)</label>
+                    <input type="number" id="fieldPrice" min="0" required>
+                </div>
+
+                <div>
+                    <label>Stock</label>
+                    <input type="number" id="fieldStock" min="0" required>
+                </div>
+
+                <div>
+                    <label>Badge</label>
+                    <input type="text" id="fieldBadge" placeholder="NEW / TRENDING / ...">
+                </div>
+
+                <div>
+                    <label>Image URL</label>
+                    <input type="url" id="fieldImage" required>
+                </div>
+
+                <div style="grid-column: 1 / -1;">
+                    <label>Description</label>
+                    <textarea id="fieldDescription" rows="3"></textarea>
+                </div>
+
+                <div style="grid-column: 1 / -1; display:flex; gap:10px;">
+                    <button type="submit" class="admin-btn small">Save</button>
+                    <button type="button" class="admin-btn small danger" id="cancelFormButton">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- TODO(you — Student D): render one <tr> per product into #productTableBody -->
+        <div class="admin-card">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <tr><td colspan="6">Loading…</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</div>
+
+<script src="../assets/js/common/storage.js"></script>
+<script src="../assets/js/common/api.js"></script>
+<script src="../assets/js/admin/admin-auth.js"></script>
+<script src="../assets/js/admin/admin-products.js"></script>
+<script>
+    requireAdminSession();
+    bindLogoutButton();
+    initProductsAdminPage();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders — NOVAÉ Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+<!-- Owner: Student D (Admin portal), fed by Student C's checkout flow -->
+
+<div class="admin-shell">
+
+    <aside class="admin-sidebar">
+        <span class="brand">NOVAÉ Admin</span>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a href="orders.html" class="active">Orders</a>
+        <a href="#" id="logoutButton">Log out</a>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <h2>Orders</h2>
+        </div>
+
+        <!--
+            TODO(you — Student D): read Storage.get("novae_orders", [])
+            (written by the checkout flow in assets/js/cart.js) and
+            render one row per order: id, date, item count, total.
+        -->
+        <div class="admin-card">
+            <table class="admin-table">
+                <thead>
+                    <tr><th>Order</th><th>Date</th><th>Items</th><th>Total</th></tr>
+                </thead>
+                <tbody id="orderTableBody">
+                    <tr><td colspan="4">Not implemented yet</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</div>
+
+<script src="../assets/js/common/storage.js"></script>
+<script src="../assets/js/common/api.js"></script>
+<script src="../assets/js/admin/admin-auth.js"></script>
+<script>
+    requireAdminSession();
+    bindLogoutButton();
+
+    // TODO(you — Student D): move this into assets/js/admin/admin-orders.js
+    // once you start building it out, same pattern as admin-products.js.
+</script>
+
+</body>
+</html>

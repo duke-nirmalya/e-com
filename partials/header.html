@@ -1,0 +1,80 @@
+<!-- =====================================================
+     SHARED HEADER PARTIAL
+     Loaded on every page via fetch() — see loadPartial()
+     in assets/js/common/ui.js. Edit this ONE file to change
+     the topbar/navbar/search panel everywhere at once.
+===================================================== -->
+
+<div class="topbar">
+    <div>FREE SHIPPING ON ORDERS OVER ₹1,999</div>
+    <div class="topbar-center">
+        <i class="bi bi-stars"></i> NEW SEASON 2026 <i class="bi bi-stars"></i>
+    </div>
+    <div>INDIA / INR</div>
+</div>
+
+
+<nav class="navbar navbar-expand-lg main-navbar">
+    <div class="container-fluid px-lg-5">
+
+        <a href="index.html" class="brand">NOVAÉ<span>.</span></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+            <ul class="navbar-nav mx-auto">
+                <li><a class="nav-link" href="index.html">Home</a></li>
+                <li><a class="nav-link" href="shop.html">Shop</a></li>
+                <li><a class="nav-link" href="index.html#collections">Collections</a></li>
+                <li><a class="nav-link" href="index.html#story">Our Story</a></li>
+                <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="nav-btn" id="searchButton"><i class="bi bi-search"></i></button>
+                <button class="nav-btn" id="themeButton"><i class="bi bi-moon"></i></button>
+
+                <button class="nav-btn wishlist-nav" id="wishlistButton">
+                    <i class="bi bi-heart"></i>
+                    <span id="wishlistCount">0</span>
+                </button>
+
+                <button class="nav-btn" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas">
+                    <i class="bi bi-bag"></i>
+                    <span id="cartCount">0</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="search-panel" id="searchPanel">
+    <div class="search-inner">
+
+        <div class="search-heading">
+            <span>SEARCH NOVAÉ</span>
+            <button id="closeSearch"><i class="bi bi-x-lg"></i></button>
+        </div>
+
+        <div class="search-input-wrapper">
+            <i class="bi bi-search"></i>
+            <input type="text" id="searchInput" placeholder="Search dresses, shirts, accessories...">
+        </div>
+
+        <!--
+            TODO(you — Student B, Shop): wire up #searchInput's
+            "input" event to filter ProductsAPI.getAll() results
+            and render them into #searchResults, like the
+            reference implementation in legacy/script.js.
+        -->
+        <div class="search-results" id="searchResults">
+            <span>Start typing to search products</span>
+        </div>
+
+    </div>
+</div>

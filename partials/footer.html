@@ -1,0 +1,112 @@
+<!-- =====================================================
+     SHARED FOOTER PARTIAL
+     Loaded on every page via fetch() — see loadPartial()
+     in assets/js/common/ui.js. Includes the footer, cart
+     drawer, product quick-view modal, toast and back-to-top
+     button so they're available everywhere.
+===================================================== -->
+
+<footer id="contact">
+    <div class="container-fluid px-lg-5">
+        <div class="footer-main">
+
+            <div class="footer-brand">
+                <div class="brand">NOVAÉ<span>.</span></div>
+                <p>Modern fashion for people who don't follow the ordinary.</p>
+                <div class="socials">
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-pinterest"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h5>SHOP</h5>
+                <a href="shop.html">New Arrivals</a>
+                <a href="shop.html?category=women">Women</a>
+                <a href="shop.html?category=men">Men</a>
+                <a href="shop.html?category=accessories">Accessories</a>
+            </div>
+
+            <div class="footer-column">
+                <h5>HELP</h5>
+                <a href="#">Shipping</a>
+                <a href="#">Returns</a>
+                <a href="#">Size Guide</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div class="footer-column">
+                <h5>ADMIN</h5>
+                <a href="admin/index.html">Admin Portal</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 NOVAÉ. All rights reserved.</span>
+            <span>Privacy · Terms · Cookies</span>
+        </div>
+    </div>
+</footer>
+
+
+<!-- PRODUCT QUICK VIEW MODAL (Student B owns the content renderer) -->
+<div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content product-modal">
+            <button type="button" class="modal-close" data-bs-dismiss="modal">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="row g-0" id="modalProduct"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- CART OFFCANVAS (Student C owns the rendering logic) -->
+<div class="offcanvas offcanvas-end cart-canvas" tabindex="-1" id="cartCanvas">
+    <div class="offcanvas-header">
+        <div>
+            <span class="section-label">SHOPPING BAG</span>
+            <h3>Your Bag</h3>
+        </div>
+        <button class="cart-close" data-bs-dismiss="offcanvas"><i class="bi bi-x-lg"></i></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <div id="cartItems"></div>
+
+        <div class="cart-bottom">
+            <div class="coupon">
+                <input type="text" id="couponInput" placeholder="Coupon code">
+                <button id="couponButton">APPLY</button>
+            </div>
+
+            <div class="coupon-message" id="couponMessage"></div>
+
+            <div class="summary-row"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+            <div class="summary-row"><span>Shipping</span><strong id="shipping">₹0</strong></div>
+            <div class="summary-row discount-row"><span>Discount</span><strong id="discount">- ₹0</strong></div>
+            <div class="summary-total"><span>Total</span><strong id="cartTotal">₹0</strong></div>
+
+            <button class="checkout-button" id="checkoutButton">
+                PROCEED TO CHECKOUT <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="toast-container position-fixed bottom-0 end-0 p-4">
+    <div id="toast" class="toast custom-toast">
+        <div class="toast-body">
+            <i class="bi bi-check-circle-fill"></i>
+            <span id="toastText">Done</span>
+        </div>
+    </div>
+</div>
+
+
+<button class="back-top" id="backTop"><i class="bi bi-arrow-up"></i></button>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login — NOVAÉ</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+<!-- Owner: Student D (Admin portal) -->
+
+<div class="admin-login-wrap">
+    <div class="admin-login-card">
+        <h1>NOVAÉ Admin</h1>
+        <p>Sign in to manage products and orders.</p>
+
+        <div class="admin-error" id="loginError"></div>
+
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" autocomplete="username" required>
+            <input type="password" id="password" placeholder="Password" autocomplete="current-password" required>
+            <button type="submit">SIGN IN</button>
+        </form>
+
+        <p style="margin-top:16px; font-size:0.75rem; color:#999;">
+            Demo credentials come from <code>data/users.json</code>
+            (default: admin / admin123).
+        </p>
+    </div>
+</div>
+
+<script src="../assets/js/common/storage.js"></script>
+<script src="../assets/js/common/api.js"></script>
+<script src="../assets/js/admin/admin-auth.js"></script>
+<script>
+    initLoginPage();
+</script>
+
+</body>
+</html>

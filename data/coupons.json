@@ -1,0 +1,12 @@
+[
+  {
+    "code": "NOVA10",
+    "discountPercent": 10,
+    "active": true
+  },
+  {
+    "code": "WELCOME15",
+    "discountPercent": 15,
+    "active": true
+  }
+]

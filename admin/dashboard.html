@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — NOVAÉ Admin</title>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+</head>
+<body class="admin-body">
+
+<!-- Owner: Student D (Admin portal) -->
+
+<div class="admin-shell">
+
+    <aside class="admin-sidebar">
+        <span class="brand">NOVAÉ Admin</span>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="products.html">Products</a>
+        <a href="orders.html">Orders</a>
+        <a href="#" id="logoutButton">Log out</a>
+    </aside>
+
+    <main class="admin-main">
+        <div class="admin-topbar">
+            <h2>Dashboard</h2>
+        </div>
+
+        <!--
+            TODO(you — Student D): render a few summary stat cards
+            here (e.g. total products, total orders, revenue) using
+            ProductsAPI.getAll() and the "novae_orders" list saved
+            by the checkout flow in assets/js/cart.js.
+        -->
+        <div class="admin-card" id="statsCard">
+            <p class="text-muted">Stats not implemented yet — see assets/js/admin/admin-dashboard.js</p>
+        </div>
+    </main>
+
+</div>
+
+<script src="../assets/js/common/storage.js"></script>
+<script src="../assets/js/common/api.js"></script>
+<script src="../assets/js/admin/admin-auth.js"></script>
+<script src="../assets/js/admin/admin-dashboard.js"></script>
+<script>
+    requireAdminSession();
+    bindLogoutButton();
+    initDashboardPage();
+</script>
+
+</body>
+</html>
