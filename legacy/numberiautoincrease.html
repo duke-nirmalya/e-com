@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Counter Statistics</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 40px;
+            background: #ffffff;
+            padding: 30px 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat-card {
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0 0 5px 0;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stats-container">
+        <!-- Countries Counter -->
+        <div class="stat-card">
+            <h2 class="stat-number" data-target="85" data-suffix="+">0</h2>
+            <p class="stat-label">Countries</p>
+        </div>
+
+        <!-- Community Counter -->
+        <div class="stat-card">
+            <h2 class="stat-number" data-target="15000" data-suffix="+">0</h2>
+            <p class="stat-label">Community</p>
+        </div>
+
+        <!-- Rating Counter -->
+        <div class="stat-card">
+            <h2 class="stat-number" data-target="4.9" data-suffix="/5" data-decimals="1">0</h2>
+            <p class="stat-label">Like Rating</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 2000; // Total animation duration in milliseconds (2 seconds)
+
+            const animateCounter = (counter) => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const decimals = parseInt(counter.getAttribute('data-decimals')) || 0;
+                
+                const startTime = performance.now();
+
+                const updateCount = (currentTime) => {
+                    const elapsedTime = currentTime - startTime;
+                    
+                    // Calculate progress (0 to 1)
+                    const progress = Math.min(elapsedTime / speed, 1);
+                    
+                    // Easing function (Ease-out quad) for smooth slowdown at the end
+                    const easeProgress = progress * (2 - progress);
+                    
+                    // Calculate current value based on eased progress
+                    const currentValue = easeProgress * target;
+
+                    // Format and display value
+                    counter.innerText = currentValue.toFixed(decimals) + suffix;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target.toFixed(decimals) + suffix; // Ensure exact final value
+                    }
+                };
+
+                requestAnimationFrame(updateCount);
+            };
+
+            // Setup Intersection Observer so animation plays when visible on screen
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            counters.forEach(counter => observer.observe(counter));
+        });
+    </script>
+
+</body>
+</html>

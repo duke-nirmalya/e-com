@@ -1,0 +1,767 @@
+/* =====================================================
+   ROOT VARIABLES
+===================================================== */
+
+:root {
+
+    --black: #10110f;
+    --dark: #171916;
+    --cream: #f4f1e9;
+    --white: #ffffff;
+    --text: #191b18;
+    --muted: #74776e;
+    --border: #dedfd8;
+    --accent: #78856e;
+
+    --transition: .35s ease;
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family: "DM Sans", sans-serif;
+
+    color: var(--text);
+
+    background: var(--cream);
+
+    overflow-x: hidden;
+
+    transition: background .3s, color .3s;
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+body.dark {
+
+    --cream: #10110f;
+    --white: #181a17;
+    --text: #f4f1e9;
+    --muted: #a1a59c;
+    --border: #343731;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.story-navbar {
+
+    min-height: 78px;
+
+    background: rgba(244, 241, 233, .92);
+
+    backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+}
+
+
+body.dark .story-navbar {
+
+    background: rgba(16, 17, 15, .92);
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand {
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    letter-spacing: -1.8px;
+
+    color: var(--text);
+
+    text-decoration: none;
+}
+
+
+.brand span {
+
+    color: #9aaa8b;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.navbar-nav {
+
+    gap: 38px;
+}
+
+
+.nav-link {
+
+    position: relative;
+
+    color: var(--text) !important;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.2px;
+
+    padding: 8px 0 !important;
+}
+
+
+.nav-link::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 2px;
+
+    left: 0;
+
+    width: 0;
+
+    height: 1px;
+
+    background: var(--text);
+
+    transition: var(--transition);
+}
+
+
+.nav-link:hover::after,
+.nav-link.active::after {
+
+    width: 100%;
+}
+
+
+/* =====================================================
+   NAVBAR TOGGLER
+===================================================== */
+
+.navbar-toggler {
+
+    border: 0;
+
+    color: var(--text);
+
+    font-size: 25px;
+
+    padding: 5px;
+}
+
+
+.navbar-toggler:focus {
+
+    box-shadow: none;
+}
+
+
+/* =====================================================
+   STORY SECTION
+===================================================== */
+
+.story-section {
+
+    background: var(--cream);
+
+    padding: 120px 0;
+}
+
+
+/* =====================================================
+   STORY IMAGE
+===================================================== */
+
+.story-image {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 550px;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   STORY SWIPER
+===================================================== */
+
+.storySwiper {
+
+    width: 100%;
+
+    height: 100%;
+}
+
+
+.storySwiper .swiper-slide {
+
+    width: 100%;
+
+    height: 100%;
+}
+
+
+.storySwiper .swiper-slide img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =====================================================
+   SWIPER BUTTONS
+===================================================== */
+
+.storySwiper .swiper-button-next,
+.storySwiper .swiper-button-prev {
+
+    width: 45px;
+
+    height: 45px;
+
+    background: rgba(255, 255, 255, .9);
+
+    color: #111;
+
+    border-radius: 50%;
+}
+
+
+.storySwiper .swiper-button-next::after,
+.storySwiper .swiper-button-prev::after {
+
+    font-size: 18px;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   SWIPER PAGINATION
+===================================================== */
+
+.storySwiper .swiper-pagination-bullet {
+
+    background: white;
+
+    opacity: .7;
+}
+
+
+.storySwiper .swiper-pagination-bullet-active {
+
+    opacity: 1;
+}
+
+
+/* =====================================================
+   STORY TAG
+===================================================== */
+
+.story-tag {
+
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 20px;
+
+    z-index: 10;
+
+    background: white;
+
+    color: #111;
+
+    padding: 12px 15px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   SECTION LABEL
+===================================================== */
+
+.section-label {
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    display: inline-block;
+
+    margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   STORY CONTENT
+===================================================== */
+
+.story-content {
+
+    max-width: 500px;
+
+    padding-left: 30px;
+}
+
+
+.story-content h1 {
+
+    font-size: clamp(45px, 5vw, 70px);
+
+    line-height: .92;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 30px;
+
+    font-weight: 600;
+}
+
+
+.story-content h1 em {
+
+    font-family: "Playfair Display", serif;
+
+    font-weight: 500;
+}
+
+
+.story-content p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.9;
+
+    margin-bottom: 15px;
+}
+
+
+/* =====================================================
+   STORY STATISTICS
+===================================================== */
+
+.story-stats {
+
+    display: flex;
+
+    gap: 40px;
+
+    border-top: 1px solid var(--border);
+
+    margin-top: 35px;
+
+    padding-top: 25px;
+}
+
+
+.stat-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    position: relative;
+}
+
+
+.stat-item strong {
+position:relative;
+    font-size: 25px;
+
+    font-weight: 700;
+
+    color: var(--text);
+    margin-left:0px;
+}
+
+
+.stat-item span {
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    color: var(--muted);
+
+    margin-top: 4px;
+}
+
+
+/* =====================================================
+   STAT BUTTONS
+===================================================== */
+
+.stat-btn {
+
+    width: 25px;
+
+    height: 25px;
+
+    border: 1px solid var(--border);
+
+    background: transparent;
+
+    color: var(--text);
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+
+
+.stat-btn:hover {
+
+    background: var(--black);
+
+    color: white;
+
+    border-color: var(--black);
+}
+
+
+.stat-item .minus {
+
+    position: absolute;
+
+    top: 0;
+
+    left: -32px;
+}
+
+
+.stat-item .plus {
+
+    position: absolute;
+
+    top: 0;
+
+    right: -18px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    background: var(--black);
+
+    color: white;
+
+    padding: 70px 0 25px;
+}
+
+
+.footer-content {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 50px;
+}
+
+
+footer .brand {
+
+    color: white;
+}
+
+
+.footer-content p {
+
+    color: #969b91;
+
+    max-width: 280px;
+
+    font-size: 11px;
+
+    line-height: 1.8;
+
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   FOOTER LINKS
+===================================================== */
+
+.footer-links {
+
+    display: flex;
+
+    gap: 30px;
+}
+
+
+.footer-links a {
+
+    color: #969b91;
+
+    font-size: 10px;
+
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+
+.footer-links a:hover {
+
+    color: white;
+}
+
+
+/* =====================================================
+   FOOTER BOTTOM
+===================================================== */
+
+.footer-bottom {
+
+    border-top: 1px solid #30352f;
+
+    padding-top: 20px;
+
+    margin-top: 60px;
+
+    color: #6f756c;
+
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   RESPONSIVE — TABLET
+===================================================== */
+
+@media (max-width: 991px) {
+
+    .navbar-nav {
+
+        gap: 5px;
+
+        padding: 20px 0;
+    }
+
+
+    .story-content {
+
+        padding-left: 0;
+    }
+
+
+    .story-section {
+
+        padding: 90px 0;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE — MOBILE
+===================================================== */
+
+@media (max-width: 767px) {
+
+    .story-section {
+
+        padding: 70px 0;
+    }
+
+
+    .story-image {
+
+        height: 450px;
+    }
+
+
+    .storySwiper .swiper-button-next,
+    .storySwiper .swiper-button-prev {
+
+        width: 38px;
+
+        height: 38px;
+    }
+
+
+    .storySwiper .swiper-button-next::after,
+    .storySwiper .swiper-button-prev::after {
+
+        font-size: 15px;
+    }
+
+
+    .story-content {
+
+        padding-left: 0;
+
+        max-width: 100%;
+    }
+
+
+    .story-content h1 {
+
+        font-size: 45px;
+
+        letter-spacing: -3px;
+    }
+
+
+    .story-stats {
+
+        gap: 25px;
+
+        justify-content: space-between;
+    }
+
+
+    .stat-item .minus {
+
+        left: -27px;
+    }
+
+
+    .stat-item .plus {
+
+        right: -27px;
+    }
+
+
+    .footer-content {
+
+        flex-direction: column;
+
+        gap: 35px;
+    }
+
+
+    .footer-links {
+
+        flex-wrap: wrap;
+
+        gap: 20px;
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE — SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .story-image {
+
+        height: 400px;
+    }
+
+
+    .story-content h1 {
+
+        font-size: 40px;
+
+        letter-spacing: -2.5px;
+    }
+
+
+    .story-stats {
+
+        gap: 15px;
+    }
+
+
+    .stat-item strong {
+
+        font-size: 21px;
+    }
+
+
+    .stat-item span {
+
+        font-size: 7px;
+    }
+
+
+    .story-tag {
+
+        bottom: 15px;
+
+        left: 15px;
+
+        padding: 10px 12px;
+
+        font-size: 8px;
+    }
+
+}
+
