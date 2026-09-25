@@ -911,24 +911,24 @@ const searchPanel =
     );
 
 
-document
-    .getElementById("searchButton")
-    .addEventListener(
-        "click",
-        () => {
+// document
+//     .getElementById("searchButton")
+//     .addEventListener(
+//         "click",
+//         () => {
 
-            searchPanel.classList.add(
-                "open"
-            );
+//             searchPanel.classList.add(
+//                 "open"
+//             );
 
-            document
-                .getElementById(
-                    "searchInput"
-                )
-                .focus();
+//             document
+//                 .getElementById(
+//                     "searchInput"
+//                 )
+//                 .focus();
 
-        }
-    );
+//         }
+//     );
 
 
 document

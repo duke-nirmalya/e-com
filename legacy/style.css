@@ -194,7 +194,7 @@ body.dark {
 
     min-height: 78px;
 
-    background: rgba(244,241,233,.92);
+    background: rgba(244, 241, 233, .92);
 
     backdrop-filter: blur(15px);
 
@@ -211,7 +211,7 @@ body.dark {
 
 body.dark .main-navbar {
 
-    background: rgba(16,17,15,.92);
+    background: rgba(16, 17, 15, .92);
 
 }
 
@@ -528,11 +528,9 @@ body.dark .main-navbar {
     inset: 0;
 
     background:
-        linear-gradient(
-            90deg,
-            rgba(8,12,8,.72),
-            rgba(8,12,8,.1) 70%
-        );
+        linear-gradient(90deg,
+            rgba(8, 12, 8, .72),
+            rgba(8, 12, 8, .1) 70%);
 
 }
 
@@ -655,7 +653,7 @@ body.dark .main-navbar {
 
     padding: 15px 20px;
 
-    border: 1px solid rgba(255,255,255,.6);
+    border: 1px solid rgba(255, 255, 255, .6);
 
     color: white;
 
@@ -779,27 +777,32 @@ body.dark .main-navbar {
    SECTION
 ===================================================== */
 
-.section {
+/* .section {
 
     padding: 120px 0;
 
+} */
+.collectionshop {
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
-
 
 .section-top {
-
     display: flex;
-
+    background-image: url("a7cd2298-2f67-44cb-8691-69f0ed8735cf.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: auto;
+    aspect-ratio: 1200 / 450;
     align-items: end;
-
     justify-content: space-between;
-
     gap: 30px;
-
     margin-bottom: 50px;
-
 }
-
 
 .section-label {
 
@@ -838,7 +841,7 @@ body.dark .main-navbar {
 }
 
 
-.section-top > p {
+.section-top>p {
 
     width: 330px;
 
@@ -848,208 +851,598 @@ body.dark .main-navbar {
 
     line-height: 1.8;
 
-    
+
 }
 
 /* =====================================================
    SEARCH PANEL (minimal support styling)
 ===================================================== */
 .search-panel {
-  position: fixed;
-  inset: 0;
-  background: var(--cream);
-  z-index: 2000;
-  display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--cream);
+    z-index: 2000;
+    display: none;
 }
-.search-panel.active { display: block; }
+
+.search-panel.active {
+    display: block;
+}
+
 .search-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 96px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 96px 24px;
 }
+
 .search-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-body);
-  letter-spacing: 0.08em;
-  margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-body);
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
 }
+
 .search-heading button {
-  border: none;
-  background: transparent;
-  font-size: 1.2rem;
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
 }
+
 .search-input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 12px;
 }
+
 .search-input-wrapper input {
-  border: none;
-  background: transparent;
-  outline: none;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    width: 100%;
 }
-.search-results { margin-top: 32px; color: var(--ink-soft); }
+
+.search-results {
+    margin-top: 32px;
+    color: var(--ink-soft);
+}
 
 
 /* =====================================================
    COLLECTION SECTION
 ===================================================== */
 collection-section .section-top {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  gap: 32px;
-  margin-bottom: 48px;
-  flex-wrap: wrap;
-  text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 32px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    text-align: left;
 }
+
+.fashion-title {
+    font-family: "Great Vibes", cursive;
+    font-size: 50px;
+    font-weight: 400;
+    color: #2d241f;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+
+}
+
+
 .section-label {
-  display: block;
-  color: var(--accent);
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
-  margin-bottom: 8px;
+    display: block;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
 }
+
+@media (max-width: 767px) {
+    .section-top {
+        height: auto;
+        aspect-ratio: 1200 / 450;
+        background-size: 100% 100%;
+        background-position: center;
+    }
+}
+
 .collection-section h2 {
-  font-family: var(--font-display);
-  font-size: 2.75rem;
-  font-weight: 500;
-  margin: 0;
+    font-family: var(--font-display);
+    font-size: 2.75rem;
+    font-weight: 500;
+    margin: 0;
 }
-.collection-section h2 em { font-style: italic; 
-    color: #97081d; 
+
+.collection-section h2 em {
+    font-style: italic;
+    color: #97081d;
 }
+
 .collection-section .section-top p {
-  max-width: 320px;
-  color: var(--ink-soft);
-  margin: 0;
+    max-width: 320px;
+    color: var(--ink-soft);
+    margin: 0;
 }
 
 /* ---- Swiper shell ---- */
 .collection-section .swiper {
-  padding: 4px 4px 8px;
-  overflow: hidden;
+    padding: 4px 4px 8px;
+    overflow: hidden;
 }
 
-/* ---- Card: image + caption share one positioning context,
-   caption pinned to the bottom of the image ---- */
+
 .collection-card {
-  position: relative;
-  border-radius: 4px;
-  overflow: hidden;
-  aspect-ratio: 3 / 4;
-  isolation: isolate;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    isolation: isolate;
 }
 
 /* Desktop: keep the card smaller instead of stretching full width */
 @media (min-width: 992px) {
-  .collection-card {
-    max-width: 340px;
-    max-height: 440px;
-    margin: 0 auto;
-  }
+    .collection-card {
+        max-width: 340px;
+        max-height: 440px;
+        margin: 0 auto;
+    }
 }
+
 
 .collection-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+
+    transition: transform 0.6s ease;
 }
 
-.collection-card:hover img { transform: scale(1.04); }
+.collection-card:hover img {
+    transform: scale(1.04);
+}
 
 /* Gradient scrim so light text stays legible over any photo */
 .collection-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(10, 8, 6, 0.85) 0%,
-    rgba(10, 8, 6, 0.35) 38%,
-    rgba(10, 8, 6, 0) 65%
-  );
-  z-index: 1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(10, 8, 6, 0.85) 0%,
+            rgba(10, 8, 6, 0.35) 38%,
+            rgba(10, 8, 6, 0) 65%);
+    z-index: 1;
 }
 
 .collection-content {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  padding: 28px;
-  color: var(--white);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 28px;
+    color: var(--white);
 }
 
 .collection-eyebrow {
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 10px;
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 10px;
 }
 
 .collection-title {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 1.1;
-  margin: 0 0 18px;
-  color: var(--white);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0 0 18px;
+    color: var(--white);
 }
-.collection-title em { font-style: italic; }
+
+.collection-title em {
+    font-style: italic;
+}
 
 .collection-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  color: var(--white);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  padding-bottom: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 4px;
 }
+
 .collection-link:hover {
-  color: var(--white);
-  border-color: var(--white);
+    color: var(--white);
+    border-color: var(--white);
 }
 
 /* Large hero card gets a bit more room for its title */
-.collection-card.large .collection-title { font-size: 2.5rem; }
+.collection-card.large .collection-title {
+    font-size: 2.5rem;
+}
 
 /* ---- Swiper nav arrows ---- */
 .collection-section .swiper-button-prev,
 .collection-section .swiper-button-next {
-  color: var(--white);
-  width: 44px;
-  height: 44px;
-  top: 45%;
-  background: var(--ink);
-  border-radius: 50%;
+    color: var(--white);
+    width: 44px;
+    height: 44px;
+    top: 45%;
+    background: var(--ink);
+    border-radius: 50%;
 }
+
 .collection-section .swiper-button-prev::after,
 .collection-section .swiper-button-next::after {
-  font-size: 1rem;
+    font-size: 1rem;
 }
-.collection-section .swiper-button-prev { left: -4px; }
-.collection-section .swiper-button-next { right: -4px; }
+
+.collection-section .swiper-button-prev {
+    left: -4px;
+}
+
+.collection-section .swiper-button-next {
+    right: -4px;
+}
 
 /* ---- Responsive ---- */
 @media (max-width: 767px) {
-  .collection-card { aspect-ratio: 4 / 5; }
-  .collection-title { font-size: 1.5rem; }
-  .collection-card.large .collection-title { font-size: 1.75rem; }
-  .collection-section h2 { font-size: 2rem; }
+    .collection-card {
+        aspect-ratio: 4/ 5;
+        margin: auto;
+       
+    }
+
+    .h4,
+    h4 {
+        font-size: 2rem;
+        margin: auto;
+        text-align: center;
+        margin-bottom: 15px;
+        font-family: cursive;
+    }
+
+    .category {
+        color: rgb(148, 1, 1);
+    }
+
+    .collection-title {
+        font-size: 1.5rem;
+    }
+
+    .collection-card.large .collection-title {
+        font-size: 1.75rem;
+    }
+
+    .collection-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .h4,
+    h4 {
+        font-size: 2rem;
+        margin: auto;
+        text-align: center;
+        margin-bottom: 15px;
+        font-family: cursive;
+    }
+
+    .category {
+        color: rgb(148, 1, 1);
+    }
+}
+/* =====================================================
+   FEATURED COLLECTION
+===================================================== */
+
+.fc-section {
+    padding: 90px 0 120px;
+    background: #f7f5f1;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.fc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 40px;
+
+    margin-bottom: 45px;
+}
+
+.fc-title-area {
+    max-width: 650px;
+}
+
+.fc-label {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 4px;
+
+    color: #777;
+}
+
+.fc-title-area h2 {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(45px, 5vw, 72px);
+
+    font-weight: 400;
+
+    line-height: 1;
+    color: #111;
+}
+
+.fc-title-area h2 em {
+    font-weight: 400;
+}
+
+
+/* Description */
+
+.fc-description {
+    max-width: 350px;
+
+    margin: 0;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    color: #666;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.fc-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 22px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.fc-card {
+    position: relative;
+
+    height: 500px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    background: #ddd;
+}
+
+
+/* =========================
+   IMAGE
+========================= */
+
+.fc-card img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.7s ease;
+}
+
+
+/* Image Zoom */
+
+.fc-card:hover img {
+    transform: scale(1.06);
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.fc-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0.15) 65%,
+        rgba(0, 0, 0, 0)
+    );
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.fc-content {
+    position: absolute;
+
+    left: 32px;
+    right: 32px;
+    bottom: 32px;
+
+    color: white;
+}
+
+.fc-content > span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+}
+
+.fc-content h3 {
+    margin: 0 0 25px;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(34px, 3vw, 48px);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+}
+
+.fc-content h3 em {
+    display: block;
+
+    font-weight: 400;
+}
+
+
+/* =========================
+   DISCOVER
+========================= */
+
+.fc-content a {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding-bottom: 8px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    border-bottom: 1px solid rgba(255,255,255,0.7);
+
+    transition: gap 0.3s ease;
+}
+
+.fc-content a:hover {
+    color: white;
+
+    gap: 16px;
+}
+
+.fc-content a i {
+    font-size: 14px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 991px) {
+
+    .fc-section {
+        padding: 70px 0 90px;
+    }
+
+    .fc-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .fc-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .fc-card {
+        height: 480px;
+    }
+
+    .fc-card:first-child {
+        grid-column: span 2;
+    }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 576px) {
+
+    .fc-section {
+        padding: 60px 0 80px;
+    }
+
+    .fc-title-area h2 {
+        font-size: 42px;
+    }
+
+    .fc-description {
+        font-size: 13px;
+    }
+
+    .fc-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .fc-card:first-child {
+        grid-column: auto;
+    }
+
+    .fc-card {
+        height: 450px;
+    }
+
+    .fc-content {
+        left: 22px;
+        right: 22px;
+        bottom: 22px;
+    }
+
 }
 
 /* =====================================================
@@ -1079,6 +1472,8 @@ collection-section .section-top {
     gap: 20px;
 
     flex-wrap: wrap;
+
+    margin-bottom: 45px;
 
 }
 
@@ -1227,7 +1622,7 @@ collection-section .section-top {
 
     border: 0;
 
-    background: rgba(255,255,255,.92);
+    background: rgba(255, 255, 255, .92);
 
     border-radius: 50%;
 
@@ -1431,11 +1826,9 @@ collection-section .section-top {
     inset: 0;
 
     background:
-        linear-gradient(
-            90deg,
-            rgba(8,10,8,.75),
-            rgba(8,10,8,.1)
-        );
+        linear-gradient(90deg,
+            rgba(8, 10, 8, .75),
+            rgba(8, 10, 8, .1));
 
 }
 
@@ -1455,7 +1848,7 @@ collection-section .section-top {
 }
 
 
-.promo-content > span {
+.promo-content>span {
 
     font-size: 9px;
 
@@ -1526,6 +1919,8 @@ collection-section .section-top {
     height: 600px;
 
     object-fit: cover;
+
+    margin-top: 20px;
 
 }
 
@@ -2484,7 +2879,7 @@ footer {
     }
 
 
-    .topbar > div:not(.topbar-center) {
+    .topbar>div:not(.topbar-center) {
 
         display: none;
 
@@ -2531,12 +2926,12 @@ footer {
 
     .section {
 
-        padding: 80px 0;
+        padding: 18px 0;
 
     }
 
 
-    .section-top {
+    .section-top1 {
 
         flex-direction: column;
 
@@ -2545,7 +2940,7 @@ footer {
     }
 
 
-    .section-top > p {
+    .section-top1>p {
 
         width: auto;
 
@@ -2585,6 +2980,7 @@ footer {
     .filter-buttons {
 
         flex-wrap: wrap;
+       
 
     }
 
