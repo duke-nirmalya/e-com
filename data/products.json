@@ -142,5 +142,77 @@
     "badge": "NEW",
     "image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=90",
     "description": "A lightweight everyday shoulder bag with a clean contemporary aesthetic."
+  },
+  {
+    "id": 13,
+    "name": "Churidar",
+    "category": "women",
+    "categoryName": "Women",
+    "price": 1599,
+    "stock": 26,
+    "rating": 4.6,
+    "badge": "NEW",
+    "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbChV9ka3ZGvr3mmg8D83kmzA66UeJUAxQDcY40-IIew&s=10",
+    "description": "An oversized cotton silhouette designed for relaxed everyday dressing."
+  },
+  {
+    "id": 14,
+    "name": "Gown",
+    "category": "women",
+    "categoryName": "Women",
+    "price": 1599,
+    "stock": 26,
+    "rating": 4.6,
+    "badge": "NEW",
+    "image": "https://5.imimg.com/data5/NQ/RP/FV/ANDROID-78013967/product-jpeg-500x500.jpg",
+    "description": "An oversized cotton silhouette designed for relaxed everyday dressing."
+  },
+  {
+    "id": 15,
+    "name": "Punjabi",
+    "category": "men",
+    "categoryName": "Men",
+    "price": 1599,
+    "stock": 26,
+    "rating": 4.6,
+    "badge": "NEW",
+    "image": "https://bharatreshma.com/cdn/shop/files/EmraanHashmiXBharatReshma_2ndNovember2025_53633copy_1.webp?v=1780306872&width=375",
+    "description": "A modern denim classic built to become a long-term wardrobe staple."
+  },
+  {
+    "id": 16,
+    "name": "Shirt",
+    "category": "men",
+    "categoryName": "Men",
+    "price": 1599,
+    "stock": 26,
+    "rating": 4.6,
+    "badge": "NEW",
+    "image": "https://cdn.shopify.com/s/files/1/0669/7621/9417/files/WhiteShirtwithNavyBlueTrouser.webp?v=1766827810",
+    "description": "A modern denim classic built to become a long-term wardrobe staple."
+  },
+  {
+    "id": 17,
+    "name": "Water Bottle",
+    "category": "accessories",
+    "categoryName": "Accessories",
+    "price": 99,
+    "stock": 26,
+    "rating": 4.6,
+    "badge": "NEW",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYcNdXiRO76gTMPXGfc5dwYKJDD24_uq21zSqvC287lQ&s=10",
+    "description": "A lightweight everyday shoulder bag with a clean contemporary aesthetic."
+  },
+  {
+    "id": 18,
+    "name": "Mobile phone",
+    "category": "accessories",
+    "categoryName": "Accessories",
+    "price": 1599,
+    "stock": 26,
+    "rating": 4.6,
+    "badge": "NEW",
+    "image": "https://img.magnific.com/free-photo/smartphone-nature-concept_23-2150246099.jpg?semt=ais_hybrid&w=740&q=80",
+    "description": "A lightweight everyday shoulder bag with a clean contemporary aesthetic."
   }
 ]

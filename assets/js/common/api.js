@@ -43,54 +43,78 @@ function getJSON(path) {
    PRODUCTS
 ===================================================== */
 
-const ProductsAPI = {
+// const ProductsAPI = {
 
-    /**
-     * Fetch the base product list and merge it with any
-     * admin created/edited/deleted changes stored locally.
-     * Written with async/await as the second worked example.
-     */
-    async getAll() {
-        const baseProducts = await getJSON(`${DATA_BASE}/products.json`);
-        return Overlay.apply("products", baseProducts);
-    },
+//     /**
+//      * Fetch the base product list and merge it with any
+//      * admin created/edited/deleted changes stored locally.
+//      * Written with async/await as the second worked example.
+//      */
+//     async getAll() {
+//         const baseProducts = await getJSON(`${DATA_BASE}/products.json`);
+//         return Overlay.apply("products", baseProducts);
+//     },
 
-    async getById(id) {
-        const all = await this.getAll();
-        return all.find(product => product.id === id) || null;
-    },
+//     async getById(id) {
+//         const all = await this.getAll();
+//         return all.find(product => product.id === id) || null;
+//     },
 
-    // TODO(you — Student D, Admin): implement create.
-    // 1. Build a new product object (generate an id — e.g. Date.now()).
-    // 2. Save it with Overlay.create("products", newProduct).
-    // 3. Return the created product.
-    async create(productData) {
-        throw new Error("ProductsAPI.create() is not implemented yet");
-    },
+//     // TODO(you — Student D, Admin): implement create.
+//     // 1. Build a new product object (generate an id — e.g. Date.now()).
+//     // 2. Save it with Overlay.create("products", newProduct).
+//     // 3. Return the created product.
+//     async create(productData) {
+//         throw new Error("ProductsAPI.create() is not implemented yet");
+//     },
 
-    // TODO(you — Student D, Admin): implement update.
-    // Use Overlay.update("products", id, changes).
-    async update(id, changes) {
-        throw new Error("ProductsAPI.update() is not implemented yet");
-    },
+//     // TODO(you — Student D, Admin): implement update.
+//     // Use Overlay.update("products", id, changes).
+//     async update(id, changes) {
+//         throw new Error("ProductsAPI.update() is not implemented yet");
+//     },
 
-    // TODO(you — Student D, Admin): implement remove.
-    // Use Overlay.remove("products", id).
-    async remove(id) {
-        throw new Error("ProductsAPI.remove() is not implemented yet");
-    }
+//     // TODO(you — Student D, Admin): implement remove.
+//     // Use Overlay.remove("products", id).
+//     async remove(id) {
+//         throw new Error("ProductsAPI.remove() is not implemented yet");
+//     }
 
-};
+// };
+const ProductsAPI = { async getAll()
+     { const response = await fetch("data/products.json");
+         if (!response.ok) { throw new Error("Failed to load products"); 
 
+         } return await response.json(); 
+        } 
+    };
 
 /* =====================================================
    CATEGORIES
 ===================================================== */
 
+// const CategoriesAPI = {
+
+//     getAll() {
+//         return getJSON(`${DATA_BASE}/categories.json`);
+//     }
+
+// };
 const CategoriesAPI = {
 
-    getAll() {
-        return getJSON(`${DATA_BASE}/categories.json`);
+    async getAll() {
+
+        const response = await fetch(
+            "data/categories.json"
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to load categories");
+        }
+
+        const categories = await response.json();
+
+        return categories;
     }
 
 };
